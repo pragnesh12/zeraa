@@ -12,16 +12,21 @@ type Params = {
 };
 
 const Organization = async ({ params }: Params) => {
-  const organization = await getOrganization(params.orgid);
+  const { orgid } = params;
+
+  // Fetch organization data
+  const organization = await getOrganization(orgid);
   if (!organization) {
     return <div>Organization Not Found!</div>;
   }
 
+  // Fetch authenticated user ID
   const { userId } = await auth();
+
   return (
-    <div className="container mx-auto ">
+    <div className="container mx-auto">
       <div className="mx-8">
-        <div className="flex flex-col sm:flex-row justify-between items-start ">
+        <div className="flex flex-col sm:flex-row justify-between items-start">
           <h1 className="text-5xl font-bold gradient-title pb-6">
             {organization.membership.organization.name}'s Projects
           </h1>
