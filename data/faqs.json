@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "question": "What is Zeraa?",
+    "answer": "Zeraa is a powerful and intuitive platform designed to help teams collaborate, track projects, and manage tasks efficiently, all in one place."
+  },
+  {
+    "id": 2,
+    "question": "Is Zeraa free to use?",
+    "answer": "Zeraa offers both free and premium plans. The free plan includes essential features, while premium plans provide advanced functionalities for larger teams and enterprises."
+  },
+  {
+    "id": 3,
+    "question": "How can I sign up for Zeraa?",
+    "answer": "You can sign up for Zeraa by visiting our website and clicking on the 'Sign Up' button. You’ll need to provide your email and create a password to get started."
+  },
+  {
+    "id": 4,
+    "question": "What features does Zeraa offer?",
+    "answer": "Zeraa offers features like project management, task tracking, team collaboration, custom workflows, and detailed analytics to enhance your productivity."
+  },
+  {
+    "id": 5,
+    "question": "Can I use Zeraa on mobile devices?",
+    "answer": "Yes, Zeraa is fully optimized for both web and mobile platforms, allowing you to stay connected and manage your work on the go."
+  },
+  {
+    "id": 6,
+    "question": "How secure is my data on Zeraa?",
+    "answer": "Zeraa takes your data security seriously. We implement industry-standard encryption and security protocols to ensure your information remains safe and private."
+  },
+  {
+    "id": 7,
+    "question": "Does Zeraa integrate with other tools?",
+    "answer": "Yes, Zeraa integrates with popular tools like Slack, Google Drive, and more, enabling seamless collaboration and improved workflows."
+  },
+  {
+    "id": 8,
+    "question": "How can I contact Zeraa support?",
+    "answer": "You can reach out to Zeraa support through the 'Contact Us' page on our website or by emailing support@zeraa.com. Our team is here to help!"
+  },
+  {
+    "id": 9,
+    "question": "Can I invite team members to Zeraa?",
+    "answer": "Absolutely! You can invite team members to join your Zeraa workspace and collaborate on projects effortlessly."
+  },
+  {
+    "id": 10,
+    "question": "Is there a limit to the number of projects I can create in Zeraa?",
+    "answer": "The free plan has a limit on the number of projects, but premium plans allow you to create an unlimited number of projects and tasks."
+  }
+]

@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  clerkUserId   String   @unique
+  email         String   @unique
+  name          String?
+  imageUrl      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  createdIssue  Issue[]  @relation("Reporter")
+  assginedIssue Issue[]  @relation("Assignee")
+  Issue         Issue[]
+}
+
+model Project {
+  id             String   @id @default(uuid())
+  name           String
+  key            String
+  description    String?
+  organizationId String //  This Will Store The Clerk Organization Id
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  Sprint         Sprint[]
+  Issue          Issue[]
+
+  @@unique([organizationId, key])
+}
+
+model Sprint {
+  id        String       @id @default(uuid())
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  status    SprintStatus @default(PLANNED)
+  project   Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  issueId   String?
+  Issue     Issue[]
+}
+
+enum SprintStatus {
+  PLANNED
+  ACTIVE
+  COMPLETED
+}
+
+model Issue {
+  id          String        @id @default(uuid())
+  title       String
+  description String?
+  status      IssueStatus
+  order       Int
+  priority    IssuePriority
+  assignee    User?         @relation("Assignee", fields: [assigneId], references: [id])
+  assigneId   String?
+  reporter    User?         @relation("Reporter", fields: [reporterId], references: [id])
+  reporterId  String?
+  project     Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   String
+  sprint      Sprint?       @relation(fields: [sprintId], references: [id], onDelete: SetNull)
+  sprintId    String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  User        User?         @relation(fields: [userId], references: [id])
+  userId      String?
+
+  @@index([status, order])
+}
+
+enum IssueStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+}
+
+enum IssuePriority {
+  LOW
+  MEDIUM
+  FAST
+  URGENT
+}

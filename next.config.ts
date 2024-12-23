@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  rules: {
+    "no-used-vars": ["warn"],
+  },
 };
 
 export default nextConfig;

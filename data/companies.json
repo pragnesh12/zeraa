@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Meta",
+    "path": "/company/meta_logo.svg"
+  },
+  {
+    "id": 2,
+    "name": "Google",
+    "path": "/company/google_logo.png"
+  },
+  {
+    "id": 3,
+    "name": "Amazon",
+    "path": "/company/amazon_logo.svg"
+  },
+  {
+    "id": 4,
+    "name": "Netflix",
+    "path": "/company/netflix_logo.png"
+  },
+  {
+    "id": 5,
+    "name": "AtlAssian",
+    "path": "/company/atlassian_logo.svg"
+  },
+  {
+    "id": 6,
+    "name": "Microsoft",
+    "path": "/company/microsoft_logo.png"
+  }
+]
