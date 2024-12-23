@@ -5,14 +5,10 @@ import ProjectList from "./_components/project-list";
 import UserIssues from "./_components/user-issues";
 import { auth } from "@clerk/nextjs/server";
 
-interface PageProps {
-  params: {
-    orgid: string;
-  };
-}
+type Params = Promise<{ slug: string[] }>;
 
-const Organization = async ({ params }: PageProps) => {
-  const organization = await getOrganization(params.orgid);
+const Organization = async (params: Params) => {
+  const organization = await getOrganization((await params).slug[0]);
   if (!organization) {
     return <div>Organization Not Found!</div>;
   }
