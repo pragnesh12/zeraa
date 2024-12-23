@@ -5,22 +5,18 @@ import ProjectList from "./_components/project-list";
 import UserIssues from "./_components/user-issues";
 import { auth } from "@clerk/nextjs/server";
 
-type Params = {
+interface PageProps {
   params: {
     orgid: string;
   };
-};
+}
 
-const Organization = async ({ params }: Params) => {
-  const { orgid } = params;
-
-  // Fetch organization data
-  const organization = await getOrganization(orgid);
+const Organization = async ({ params }: PageProps) => {
+  const organization = await getOrganization(params.orgid);
   if (!organization) {
     return <div>Organization Not Found!</div>;
   }
 
-  // Fetch authenticated user ID
   const { userId } = await auth();
 
   return (
