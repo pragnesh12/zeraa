@@ -19,7 +19,7 @@ export async function createIssue(projectId: string, data: any) {
       );
     }
 
-    let user = await db.user.findUnique({ where: { clerkUserId: userId } });
+    const user = await db.user.findUnique({ where: { clerkUserId: userId } });
 
     if (!user) {
       throw new Error("User not found in the database.");
