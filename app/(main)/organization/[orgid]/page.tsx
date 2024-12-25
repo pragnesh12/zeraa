@@ -4,16 +4,23 @@ import React from "react";
 import ProjectList from "./_components/project-list";
 import UserIssues from "./_components/user-issues";
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-type Params = Promise<{ slug: string[] }>;
+const Organization = async ({ params }: any) => {
+  const { orgid } = await params;
+  const { userId } = await auth();
 
-const Organization = async (params: Params) => {
-  const organization = await getOrganization((await params).slug[0]);
-  if (!organization) {
-    return <div>Organization Not Found!</div>;
+  console.log("orgId ===> ", orgid);
+
+  if (!userId) {
+    redirect("/sign-in");
   }
 
-  const { userId } = await auth();
+  const organization = await getOrganization(orgid);
+
+  if (!organization) {
+    return <div>Organization not found</div>;
+  }
 
   return (
     <div className="container mx-auto">
