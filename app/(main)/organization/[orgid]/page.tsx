@@ -6,7 +6,9 @@ import UserIssues from "./_components/user-issues";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-const Organization = async ({ params }: any) => {
+type Params = Promise<{ orgid: string }>;
+
+const Organization = async ({ params }: { params: Params }) => {
   const { orgid } = await params;
   const { userId } = await auth();
 
