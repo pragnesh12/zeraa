@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadesOfPurple } from "@clerk/themes";
-import { Header } from "@/components/Header";
+import Header from "@/components/Header";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,6 +12,16 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Zeraa",
   description: "An Advanced Project Managment App",
+  icons: {
+    icon: [
+      {
+        url: "/newImageLogo.jpg",
+        href: "/newImageLogo.jpg",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

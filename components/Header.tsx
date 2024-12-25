@@ -1,25 +1,32 @@
+"use client";
+
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
-import { Menu, PenBox, X } from "lucide-react";
-import { useState } from "react";
 import Image from "next/image";
-import { ThemeToggleButton } from "./ui/ThemeToggleButton";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { PenBox } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import UserMenu from "./user-menu";
-import { UserCheck } from "@/lib/UserChecks";
 import Loader from "./user-loading";
 
-const navigation = [{ name: "Home", href: "/" }];
+const Header = () => {
+  const [isMobile, setIsMobile] = useState(false);
 
-export const Header = async () => {
-  await UserCheck();
+  // Check for window width in the browser
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Set initial state and listen for resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -30,7 +37,7 @@ export const Header = async () => {
         >
           <div className="flex h-16 items-center justify-between">
             {/* Left Section: Logo */}
-            <div className="flex items-center ml-[-8rem]">
+            <div className="flex items-center ml-[-8rem] ">
               <Link href="/">
                 <Image
                   src="/image.png"
@@ -43,29 +50,15 @@ export const Header = async () => {
             </div>
 
             {/* Center Section: Navigation links */}
-            <div className="hidden space-x-8 lg:flex">
-              {/* {navigation.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`text-sm font-medium ${
-                    pathname === link.href
-                      ? "text-indigo-800"
-                      : "text-gray-300 hover:text-gray-100"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))} */}
-            </div>
+            <div className="hidden space-x-8 lg:flex"></div>
 
             {/* Right Section: Sign In/Sign Up/User Button */}
             <div className="ml-10 space-x-4 sm:hidden md:inline mr-[-8rem] flex">
               <div className="flex ">
                 <SignedOut>
-                  <div className="mr-3">
+                  {/* <div className="mr-3">
                     <ThemeToggleButton />
-                  </div>
+                  </div> */}
                   <SignInButton>
                     <button className="rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-opacity-75 ">
                       Sign in
@@ -78,6 +71,19 @@ export const Header = async () => {
                   {/* <div className="mr-3">
                       <ThemeToggleButton />
                     </div> */}
+                  {isMobile ? (
+                    <div className="flex items-center ml-[-10rem] mr-5">
+                      <Link href="/">
+                        <Image
+                          src="/image.png"
+                          className="h-8 w-auto"
+                          width={100}
+                          height={100}
+                          alt="Zeraa"
+                        />
+                      </Link>
+                    </div>
+                  ) : null}
                   <div className="mr-3">
                     <Link href="/project/create">
                       <Button className="items-center bg-red-600 text-white hover:text-white hover:bg-red-400 gap-2">
@@ -100,3 +106,5 @@ export const Header = async () => {
     </>
   );
 };
+
+export default Header;
