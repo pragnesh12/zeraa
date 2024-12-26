@@ -84,9 +84,10 @@ const SprintManager = ({
 
   return (
     <>
-      <div className="flex justify-center items-ceneter gap-4 sm:mx-[15rem] mx-7 md:mx-9">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 mx-4 md:mx-8">
+        {/* Select Dropdown */}
         <Select value={currentSprint?.name} onValueChange={handleSprintChange}>
-          <SelectTrigger className="bg-slate-950 self-start md:py-6">
+          <SelectTrigger className="bg-slate-950  md:py-4">
             <SelectValue placeholder={"Please Select The Sprint"} />
           </SelectTrigger>
           <SelectContent>
@@ -94,7 +95,7 @@ const SprintManager = ({
               <SelectItem
                 key={sprint.id}
                 value={sprint.name}
-                className="md:p-3"
+                className="py-2 px-3 md:p-3"
               >
                 {sprint.name} ({format(sprint.startDate, "MMM d, yyyy")}) to{" "}
                 {format(sprint.endDate, "MMM d, yyyy")}
@@ -103,9 +104,10 @@ const SprintManager = ({
           </SelectContent>
         </Select>
 
+        {/* Start Sprint Button */}
         {canStart && (
           <Button
-            className="bg-green-800 text-white md:py-5 md:mt-1"
+            className="bg-green-800 text-white py-3 px-5 md:py-5 md:px-6"
             onClick={() => {
               handleStatusChange("ACTIVE");
             }}
@@ -115,6 +117,7 @@ const SprintManager = ({
           </Button>
         )}
 
+        {/* End Sprint Button */}
         {canEnd && (
           <Button
             variant={"destructive"}
@@ -122,15 +125,16 @@ const SprintManager = ({
               handleStatusChange("COMPLETED");
             }}
             disabled={loading}
-            className="md:py-5 md:mt-1"
+            className="py-3 px-5 md:py-5 md:px-6"
           >
             End Sprint
           </Button>
         )}
       </div>
-      <div className="ml-8 mt-1">
+
+      <div className="ml-4 md:ml-8 mt-3">
         {getStatusText() && (
-          <Badge className="self-start md:ml-1  md:text-sm sm:text-[1px]">
+          <Badge className="text-xs md:text-sm px-2 py-1 md:px-3 md:py-2">
             {getStatusText()}
           </Badge>
         )}

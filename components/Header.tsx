@@ -30,31 +30,38 @@ const Header = () => {
 
   return (
     <>
-      <header className="shadow-sm">
+      <header className="shadow-sm border-b-gray border-b-2">
         <nav
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          className="mx-auto max-w-auto px-4 sm:px-6 md:px-8 lg:px-8"
           aria-label="Top"
         >
           <div className="flex h-16 items-center justify-between">
             {/* Left Section: Logo */}
-            <div className="flex items-center ml-[-8rem] ">
+            <div className="flex items-center ">
               <Link href="/">
-                <Image
-                  src="/image.png"
-                  className="h-8 w-auto"
-                  width={100}
-                  height={100}
-                  alt="Zeraa"
-                />
+                {!isMobile ? (
+                  <Image
+                    src="/image.png"
+                    className="h-8 w-auto"
+                    width={100}
+                    height={100}
+                    alt="Zeraa"
+                  />
+                ) : (
+                  <Image
+                    src="/newImageLogo.jpg"
+                    className="h-8 w-auto"
+                    width={100}
+                    height={100}
+                    alt="Zeraa"
+                  />
+                )}
               </Link>
             </div>
 
-            {/* Center Section: Navigation links */}
-            <div className="hidden space-x-8 lg:flex"></div>
-
             {/* Right Section: Sign In/Sign Up/User Button */}
-            <div className="ml-10 space-x-4 sm:hidden md:inline mr-[-8rem] flex">
-              <div className="flex ">
+            <div className="ml-10 space-x-4 sm:hidden md:inline flex items-center pt-[-10rem]">
+              <div>
                 <SignedOut>
                   {/* <div className="mr-3">
                     <ThemeToggleButton />
@@ -66,24 +73,11 @@ const Header = () => {
                   </SignInButton>
                 </SignedOut>
               </div>
-              <div className="items-center mt-[10px] flex">
+              <div className="items-center flex">
                 <SignedIn>
                   {/* <div className="mr-3">
                       <ThemeToggleButton />
                     </div> */}
-                  {isMobile ? (
-                    <div className="flex items-center ml-[-10rem] mr-5">
-                      <Link href="/">
-                        <Image
-                          src="/image.png"
-                          className="h-8 w-auto"
-                          width={100}
-                          height={100}
-                          alt="Zeraa"
-                        />
-                      </Link>
-                    </div>
-                  ) : null}
                   <div className="mr-3">
                     <Link href="/project/create">
                       <Button className="items-center bg-red-600 text-white hover:text-white hover:bg-red-400 gap-2">
@@ -96,9 +90,6 @@ const Header = () => {
                 </SignedIn>
               </div>
             </div>
-
-            {/* Mobile Menu Button */}
-            <div className="flex lg:hidden"></div>
           </div>
         </nav>
         <Loader />

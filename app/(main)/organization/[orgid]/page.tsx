@@ -12,8 +12,6 @@ const Organization = async ({ params }: { params: Params }) => {
   const { orgid } = await params;
   const { userId } = await auth();
 
-  console.log("orgId ===> ", orgid);
-
   if (!userId) {
     redirect("/sign-in");
   }

@@ -71,7 +71,7 @@ const SprintCreationForm = ({
   return (
     <>
       <div className="flex justify-between mx-8">
-        <h1 className="md:text-4xl text-3xl font-bold gradient-title mb-8 md:mt-0 mt-2">
+        <h1 className="md:text-4xl text-3xl font-bold gradient-title mb-[2.5rem] md:mt-0 sm:mt-[-1.5rem]">
           {projectTitle}
         </h1>
         <Button
@@ -85,7 +85,7 @@ const SprintCreationForm = ({
 
       {showForm && (
         <>
-          <Card className="pt-4 mb-4 mx-8">
+          <Card className="pt-4 mb-4 md:mx-8">
             <CardContent>
               <form
                 className="flex gap-4 items-end"
