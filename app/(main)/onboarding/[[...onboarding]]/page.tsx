@@ -1,5 +1,4 @@
 "use client";
-
 import { OrganizationList, useOrganization } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";

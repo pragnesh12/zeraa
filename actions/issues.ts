@@ -13,6 +13,7 @@ export async function createIssue(projectId: string, data: any) {
 
     // Check if required fields are present in the data
     const { title, description, status, priority, sprintId, assigneeId } = data;
+    console.log("data : ", data);
     if (!title || !description || !status || !priority) {
       throw new Error(
         "Missing required fields: title, description, status, or priority."
@@ -39,7 +40,7 @@ export async function createIssue(projectId: string, data: any) {
         title,
         description,
         status,
-        priority,
+        priority: priority || "low",
         projectId,
         sprintId,
         reporterId: user.id,
